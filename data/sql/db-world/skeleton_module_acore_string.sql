@@ -1,0 +1,2 @@
+-- XP Catch-Up module setup
+-- This module does not require any database changes

@@ -1,0 +1,52 @@
+# XP Catch-Up Module Configuration
+#
+# This module dynamically redistributes kill XP among party/raid members
+# so lower-level characters catch up to the highest-level character (the "master"),
+# within a configurable level-difference window.
+
+# Main toggle - enables or disables the XP catch-up system
+# XPCatchup.Enable = true | false
+# Default: true
+XPCatchup.Enable = true
+
+# Level difference window - members more than this far from the master's
+# level are excluded from XP redistribution
+# Recommended: 7 (matches the effective party XP sharing range in WotLK)
+# Higher values allow catch-up for wider level spreads but may include
+# members who receive negligible XP from kills.
+# Default: 7
+XPCatchup.LevelWindow = 7
+
+# If the party leader is a bot, skip catch-up entirely.
+# Only effective when mod-playerbots is installed; otherwise this option is a no-op (all players treated as real).
+# Set to false to allow catch-up even when the master is a bot
+# Default: true
+XPCatchup.RequireRealMaster = true
+
+# Distribution algorithm:
+#   0 = lowest  - gives entire pool to the single lowest-XP member (default)
+#   1 = dynamic - splits pool proportionally, weighted by XP deficit
+#   Dynamic mode is useful when you have multiple characters at different XP levels
+#   and want them to catch up simultaneously with appropriate proportions.
+# Default: 0
+XPCatchup.Distribution = 0
+
+# Catchup activation threshold (percent)
+# Catchup only activates when at least one group member has a deficit >=
+# this percentage relative to the master. When everyone is within this
+# margin the module steps back and lets natural XP flow.
+# Set to 0 to always activate catchup regardless of deficit.
+# Default: 10
+
+# Chat debug mode - sends what each character received to party chat after each kill
+# Messages appear like: "[XP Catch-Up] received 840 XP (weight 4200; deficit: 42.00%)"
+# WARNING: This can be VERY spammy in busy dungeons. Only enable for verification/debugging.
+# Default: false
+XPCatchup.ChatDebug = false
+
+# Debug logging - enables LOG_INFO messages to console and Server.log
+# Requires logger level to be set to 4 in worldserver.conf
+# Example: Logger.XPCatchup=4,Console Server
+# WARNING: This can be VERY spammy in busy dungeons. Only enable for verification/debugging.
+# Default: false
+XPCatchup.Logging = false
